@@ -19,11 +19,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if(args.length < 3) {
+        if(args.length < 2) {
            System.err.println("Usage: prog peopleIP bankIP");
         }
-        HostManager.addHost(HostManager.Host.PEOPLE, args[1], 4096, 2048);
-        HostManager.addHost(HostManager.Host.BANK, args[2], 4243, 4242);
+        HostManager.addHost(HostManager.Host.PEOPLE, args[0], 4096, 2048);
+        HostManager.addHost(HostManager.Host.BANK, args[1], 4243, 4242);
 
 
         ClientTCPDial server = new ClientTCPDial();
