@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class RequestParser {
 
-    public static void parse(String request) throws RequestException {
+    public static String parse(String request) throws RequestException {
         //TODO: parse and execute request
         try {
             BufferedReader bob = new BufferedReader(new StringReader(request));
@@ -46,9 +46,10 @@ public class RequestParser {
                         break;
                 }
             } // while
-            parsedRequest.execute();
+            return parsedRequest.execute();
         } catch (IOException ex) {
             Logger.getLogger(RequestParser.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         } // catch
     }
 }

@@ -14,7 +14,7 @@ public class GetRequest implements IParsedRequest {
     private String from;
     private String value;
 
-    public void execute() {
+    public String execute() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

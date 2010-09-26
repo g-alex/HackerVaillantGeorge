@@ -34,13 +34,7 @@ public class ClientTCPHandler extends Thread {
 	    inFromClient = new BufferedReader(new InputStreamReader(connectionSock.getInputStream()));
 	    ObjectOutputStream outToClient = new ObjectOutputStream(connectionSock.getOutputStream());
 	    request = inFromClient.readLine();
-	    Logger.getAnonymousLogger().log(Level.INFO, request);
-
-            RequestParser.parse(request);
-
-//            PseudoDB pdb=PseudoDB.getInstance();
-//	    leType = pdb.getPersonByPseudo(request);
-//	    outToClient.writeObject(leType);
+	    Logger.getAnonymousLogger().log(Level.INFO, request);outToClient.writeBytes(RequestParser.parse(request));
 	} catch (RequestException ex) {
             Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

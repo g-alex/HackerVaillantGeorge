@@ -10,7 +10,7 @@ package hackervaillant.util;
  */
 public interface IParsedRequest {
 
-    public void execute();
+    public String execute();
 
     public void setFirst(String f);
 

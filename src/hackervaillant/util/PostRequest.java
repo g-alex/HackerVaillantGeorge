@@ -14,7 +14,7 @@ public class PostRequest implements IParsedRequest {
     private String n;
     private String p;
 
-    public void execute() {
+    public String execute() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
