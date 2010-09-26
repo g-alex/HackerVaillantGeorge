@@ -33,7 +33,7 @@ public class TCPClient implements Client {
       try {
          this.host = host;
 
-         socket = new Socket(HostManager.getIP(host), HostManager.getPort(host));
+         socket = new Socket(HostManager.getIP(host), HostManager.getTPort(host));
       } catch (UnknownHostException ex) {
          Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
       } catch (IOException ex) {
@@ -43,7 +43,7 @@ public class TCPClient implements Client {
 
    public void connect() {
       try {
-         if (host == Host.TCPBANK) {
+         if (host == Host.BANK) {
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new DataInputStream(socket.getInputStream());
 
@@ -74,7 +74,7 @@ public class TCPClient implements Client {
    }
 
    public Object receive() {
-      if(this.host == Host.TCPBANK) {
+      if(this.host == Host.BANK) {
          BufferedReader reader = new BufferedReader(new InputStreamReader((DataInputStream) inFromServer));
          try {
             return reader.readLine();
