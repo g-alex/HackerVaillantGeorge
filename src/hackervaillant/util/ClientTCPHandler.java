@@ -4,6 +4,8 @@
  */
 package hackervaillant.util;
 
+import hackervaillant.net.RequestException;
+import hackervaillant.net.RequestParser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,7 +41,9 @@ public class ClientTCPHandler extends Thread {
 //            PseudoDB pdb=PseudoDB.getInstance();
 //	    leType = pdb.getPersonByPseudo(request);
 //	    outToClient.writeObject(leType);
-	} catch (IOException ex) {
+	} catch (RequestException ex) {
+            Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
 	    Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
 	} finally {
 	    try {
