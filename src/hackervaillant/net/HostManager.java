@@ -15,7 +15,7 @@ public class HostManager {
 
    public enum Host {
 
-      BANK, PEOPLE;
+      TCPBANK, TCPPEOPLE, UDPBANK, UDPPEOPLE;
 
    }
    private static Map<Host, String> hostIPs = new EnumMap<Host, String>(Host.class);

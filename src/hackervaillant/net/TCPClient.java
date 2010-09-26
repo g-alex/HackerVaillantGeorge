@@ -43,7 +43,7 @@ public class TCPClient implements Client {
 
    public void connect() {
       try {
-         if (host == Host.BANK) {
+         if (host == Host.TCPBANK) {
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new DataInputStream(socket.getInputStream());
 
@@ -74,7 +74,7 @@ public class TCPClient implements Client {
    }
 
    public Object receive() {
-      if(this.host == Host.BANK) {
+      if(this.host == Host.TCPBANK) {
          BufferedReader reader = new BufferedReader(new InputStreamReader((DataInputStream) inFromServer));
          try {
             return reader.readLine();
