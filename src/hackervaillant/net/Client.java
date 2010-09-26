@@ -5,26 +5,25 @@
 
 package hackervaillant.net;
 
+import java.net.DatagramSocket;
+import java.net.Socket;
+
 /**
  *
  * @author judu
  */
-public class Client {
+public interface Client {
 
    public enum Host {
       BANK, PEOPLE;
    }
 
-
    public enum Proto {
       TCP, UDP;
    }
 
-   public Client() {
-   }
-
-
-
-   
+   public void connect();
+   public void send();
+   public Object receive();
 
 }
