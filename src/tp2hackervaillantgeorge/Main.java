@@ -22,6 +22,9 @@ public class Main {
         if(args.length < 2) {
            System.err.println("Usage: prog peopleIP bankIP");
         }
+        System.out.println(args[0]);
+        System.out.println(args[1]);
+
         HostManager.addHost(HostManager.Host.PEOPLE, args[0], 4096, 2048);
         HostManager.addHost(HostManager.Host.BANK, args[1], 4243, 4242);
 

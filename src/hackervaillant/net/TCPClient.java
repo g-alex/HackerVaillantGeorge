@@ -92,4 +92,13 @@ public class TCPClient implements Client {
       }
       return null;
    }
+
+
+   public void close() {
+      try {
+         socket.close();
+      } catch (IOException ex) {
+         Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
+      }
+   }
 }

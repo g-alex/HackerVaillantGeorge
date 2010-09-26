@@ -7,6 +7,7 @@ package hackervaillant.util;
 import hackervaillant.net.RequestException;
 import hackervaillant.net.RequestParser;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
@@ -20,31 +21,34 @@ import java.util.logging.Logger;
  */
 public class ClientTCPHandler extends Thread {
 
-    private Socket connectionSock;
+   private Socket connectionSock;
 
-    public ClientTCPHandler(Socket sock) {
-        connectionSock = sock;
-    }
+   public ClientTCPHandler(Socket sock) {
+      connectionSock = sock;
+   }
 
-    @Override
-    public void run(){
-        BufferedReader inFromClient = null;
-	try {
-	    String request;
-	    inFromClient = new BufferedReader(new InputStreamReader(connectionSock.getInputStream()));
-	    ObjectOutputStream outToClient = new ObjectOutputStream(connectionSock.getOutputStream());
-	    request = inFromClient.readLine();
-	    Logger.getAnonymousLogger().log(Level.INFO, request);outToClient.writeBytes(RequestParser.parse(request));
-	} catch (RequestException ex) {
-            Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-	    Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
-	} finally {
-	    try {
-		inFromClient.close();
-	    } catch (IOException ex) {
-		Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
-	    }
-	}
-    }
+   @Override
+   public void run() {
+      BufferedReader inFromClient = null;
+      try {
+         String request;
+         StringBuilder rb = new StringBuilder();
+         inFromClient = new BufferedReader(new InputStreamReader(connectionSock.getInputStream()));
+         DataOutputStream outToClient = new DataOutputStream(connectionSock.getOutputStream());
+
+         rb.append(inFromClient.readLine()).append('\n');
+         rb.append(inFromClient.readLine()).append('\n');
+         rb.append(inFromClient.readLine()).append('\n');
+         rb.append(inFromClient.readLine()).append('\n');
+         request = rb.toString();
+
+         Logger.getAnonymousLogger().log(Level.INFO, request);
+         outToClient.writeBytes(RequestParser.parse(request));
+         
+      } catch (RequestException ex) {
+         Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (IOException ex) {
+         Logger.getLogger(ClientTCPHandler.class.getName()).log(Level.SEVERE, null, ex);
+      }
+   }
 }
