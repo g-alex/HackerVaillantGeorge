@@ -43,7 +43,9 @@ public class UDPClient implements Client {
          if (!(obj instanceof String)) {
             return;
          }
-         byte[] sendData = new byte[1024];
+         String str = (String) obj;
+         byte[] sendData = str.getBytes();
+
          DatagramPacket packet = new DatagramPacket(sendData, sendData.length, InetAddress.getByName(HostManager.getIP(host)), HostManager.getUPort(host));
          socket.send(packet);
       } catch (IOException ex) {
