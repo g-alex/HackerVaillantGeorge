@@ -36,13 +36,13 @@ public class RequestParser {
             while ((line = bob.readLine()) != null) {
                 switch (++i) {
                     case 1:
-                        parsedRequest.setFirst(line);
+                        parsedRequest.setFirst(line.split(":")[1]);
                         break;
                     case 2:
-                        parsedRequest.setSecond(line);
+                        parsedRequest.setSecond(line.split(":")[1]);
                         break;
                     case 3:
-                        parsedRequest.setThird(line);
+                        parsedRequest.setThird(line.split(":")[1]);
                         break;
                 }
             } // while
