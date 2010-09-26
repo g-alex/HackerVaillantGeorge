@@ -6,16 +6,12 @@ package hackervaillant.net;
  */
 public interface Client {
 
-   public enum Host {
-      BANK, PEOPLE;
-   }
-
    public enum Proto {
       TCP, UDP;
    }
 
    public void connect();
-   public void send();
+   public void send(Object obj);
    public Object receive();
 
 }

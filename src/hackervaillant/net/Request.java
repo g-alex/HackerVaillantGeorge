@@ -13,7 +13,7 @@ import hackervaillant.util.Person;
  */
 public class Request {
 
-   private Client.Host to;
+   private HostManager.Host to;
    private Client.Proto proto;
    private String body;
    private Person person;
@@ -22,7 +22,7 @@ public class Request {
    }
 
 
-   public Request to(Client.Host host) {
+   public Request to(HostManager.Host host) {
          to = host;
          return this;
    }
