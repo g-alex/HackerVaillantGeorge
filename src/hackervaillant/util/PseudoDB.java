@@ -3,15 +3,12 @@
  * and open the template in the editor.
  */
 
-package hackervaillant.net;
+package hackervaillant.util;
 
 /**
  *
  * @author indy
  */
-public class RequestException extends Exception {
-
-    public RequestException() {
-    }
+class PseudoDB {
 
 }
